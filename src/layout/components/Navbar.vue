@@ -5,7 +5,16 @@
     <breadcrumb class="breadcrumb-container" />
 
     <div class="right-menu">
-      <el-dropdown class="avatar-container" trigger="click">
+      <template v-if="device!=='mobile'">
+        <search id="header-search" class="right-menu-item" />
+        <screenfull id="screenfull" class="right-menu-item hover-effect" />
+        <settingsPanel v-if="showSettings" id="settingsPanel" class="right-menu-item hover-effect">
+          <settings />
+        </settingsPanel>
+
+      </template>
+
+      <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <div class="avatar-wrapper">
           <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
           <i class="el-icon-caret-bottom" />
@@ -16,9 +25,6 @@
               Home
             </el-dropdown-item>
           </router-link>
-          <a target="_blank" href="https://github.com/PanJiaChen/vue-admin-template/">
-            <el-dropdown-item>Github</el-dropdown-item>
-          </a>
           <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">
             <el-dropdown-item>Docs</el-dropdown-item>
           </a>
@@ -32,20 +38,32 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
+import Screenfull from '@/components/Screenfull' // 全屏
+import Search from '@/components/HeaderSearch' // 路由搜索按钮
+import SettingsPanel from '@/components/SettingsPanel' // 右侧设置面板
+import Settings from '../components/Settings' // 右侧面板设置页
 
 export default {
   components: {
     Breadcrumb,
-    Hamburger
+    Hamburger,
+    Screenfull,
+    SettingsPanel,
+    Settings,
+    Search
   },
   computed: {
     ...mapGetters([
       'sidebar',
-      'avatar'
-    ])
+      'avatar',
+      'device'
+    ]),
+    ...mapState({
+      showSettings: state => state.settings.showSettings
+    })
   },
   methods: {
     toggleSideBar() {

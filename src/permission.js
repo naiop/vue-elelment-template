@@ -32,9 +32,16 @@ router.beforeEach(async(to, from, next) => {
       } else {
         try {
           // get user info
-          await store.dispatch('user/getInfo')
+          // 注意：角色必须是对象数组！例如：['admin']或['developer'、'editor']
+          const { roles } = await store.dispatch('user/getInfo')
 
-          next()
+          // 基于角色生成可访问的路线图
+          const accessRoutes = await store.dispatch('permission/generateRoutes', roles)
+
+          // 动态添加可访问的路由
+          router.addRoutes(accessRoutes)
+
+          next({ ...to, replace: true })
         } catch (error) {
           // remove token and go to login page to re-login
           await store.dispatch('user/resetToken')
