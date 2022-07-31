@@ -28,6 +28,12 @@
           <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">
             <el-dropdown-item>Docs</el-dropdown-item>
           </a>
+          <a target="_blank" href="https://github.com/naiop/ILoveJS/tree/master/express">
+            <el-dropdown-item>Api Project</el-dropdown-item>
+          </a>
+          <a target="_blank" href="http://47.103.68.175:3001/api-docs/">
+            <el-dropdown-item>API</el-dropdown-item>
+          </a>
           <el-dropdown-item divided @click.native="logout">
             <span style="display:block;">Log Out</span>
           </el-dropdown-item>

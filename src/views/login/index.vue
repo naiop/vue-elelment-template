@@ -53,13 +53,15 @@
 </template>
 
 <script>
+// eslint-disable-next-line no-unused-vars
 import { validUsername } from '@/utils/validate'
 
 export default {
   name: 'Login',
   data() {
     const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
+      // if (!validUsername(value)) {
+      if (value.length < 1) {
         callback(new Error('Please enter the correct user name'))
       } else {
         callback()
@@ -74,8 +76,8 @@ export default {
     }
     return {
       loginForm: {
-        username: 'admin',
-        password: '111111'
+        username: '',
+        password: ''
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
