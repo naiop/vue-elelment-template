@@ -16,16 +16,16 @@ import '@/icons' // icon
 import '@/permission' // permission control
 
 /**
- * If you don't want to use mock-server
- * you want to use MockJs for mock api
- * you can execute: mockXHR()
- *
- * Currently MockJs will be used in the production environment,
- * please remove it before going online ! ! !
+*如果您不想使用模拟服务器
+*您想将MockJs用于模拟api
+*您可以执行：mockXHR（）
+*
+*目前，MockJs将用于生产环境，
+*请在联机前将其删除！
  */
 if (process.env.NODE_ENV === 'production') {
-  const { mockXHR } = require('../mock')
-  mockXHR()
+  // const { mockXHR } = require('../mock')
+  // mockXHR()
 }
 
 // set ElementUI lang to EN
