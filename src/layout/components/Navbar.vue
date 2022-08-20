@@ -8,6 +8,7 @@
       <template v-if="device!=='mobile'">
         <search id="header-search" class="right-menu-item" />
         <screenfull id="screenfull" class="right-menu-item hover-effect" />
+        <!-- 右侧面板设置页 -->
         <settingsPanel v-if="showSettings" id="settingsPanel" class="right-menu-item hover-effect">
           <settings />
         </settingsPanel>

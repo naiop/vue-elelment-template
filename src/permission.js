@@ -8,7 +8,7 @@ import getPageTitle from '@/utils/get-page-title'
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
-const whiteList = ['/login'] // no redirect whitelist
+const whiteList = ['/login', '/register'] // 不重定向白名单
 
 router.beforeEach(async(to, from, next) => {
   // start progress bar
@@ -55,7 +55,7 @@ router.beforeEach(async(to, from, next) => {
     /* has no token*/
 
     if (whiteList.indexOf(to.path) !== -1) {
-      // in the free login whitelist, go directly
+      // 在免费登录白名单中，直接进入
       next()
     } else {
       // other pages that do not have permission to access are redirected to the login page.

@@ -41,11 +41,19 @@
         </span>
       </el-form-item>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
+      <el-form-item>
+        <el-input v-model="loginForm.validate" class="validate-code" placeholder="validate" />
+        <div class="validate-canvas" @click="refreshCode">
+          <Identify :identify-code="identifyCode" />
+        </div>
+      </el-form-item>
+
+      <el-button :loading="loading" type="primary" style="width:100%;" @click.native.prevent="handleLogin">Login</el-button>
 
       <div class="tips">
-        <span style="margin-right:20px;">username: admin</span>
-        <span> password: any</span>
+        <!-- <span style="margin-right:20px;">username: admin</span>
+        <span> password: any</span> -->
+        <p class="register" @click="handleRegister()">注册</p>
       </div>
 
     </el-form>
@@ -55,9 +63,11 @@
 <script>
 // eslint-disable-next-line no-unused-vars
 import { validUsername } from '@/utils/validate'
+import Identify from './components/identify.vue' // 自定义验证码组件
 
 export default {
   name: 'Login',
+  components: { Identify },
   data() {
     const validateUsername = (rule, value, callback) => {
       // if (!validUsername(value)) {
@@ -75,9 +85,12 @@ export default {
       }
     }
     return {
+      identifyCodes: '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+      identifyCode: '',
       loginForm: {
         username: '',
-        password: ''
+        password: '',
+        validate: ''
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],
@@ -96,7 +109,29 @@ export default {
       immediate: true
     }
   },
+  mounted() {
+    this.identifyCode = ''
+    this.makeCode(this.identifyCodes, 4)
+  },
   methods: {
+    refreshCode() {
+      this.identifyCode = ''
+      this.makeCode(this.identifyCodes, 4)
+    },
+    randomNum(min, max) {
+      return Math.floor(Math.random() * (max - min) + min)
+    },
+    makeCode(o, l) {
+      for (let i = 0; i < l; i++) {
+        this.identifyCode += this.identifyCodes[
+          this.randomNum(0, this.identifyCodes.length)
+        ]
+      }
+      console.log(this.identifyCode)
+    },
+    handleRegister() {
+      this.$router.push('/register')
+    },
     showPwd() {
       if (this.passwordType === 'password') {
         this.passwordType = ''
@@ -110,6 +145,10 @@ export default {
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
+          if (this.loginForm.validate !== this.identifyCode) {
+            this.$message('验证码不正确！')
+            return
+          }
           this.loading = true
           this.$store.dispatch('user/login', this.loginForm).then(() => {
             this.$router.push({ path: this.redirect || '/' })
@@ -192,7 +231,7 @@ $light_gray:#eee;
     position: relative;
     width: 520px;
     max-width: 100%;
-    padding: 90px 35px 0;
+    padding: 20px 35px 0;
     margin: 0 auto;
     overflow: hidden;
     background-color: rgba(155, 155, 155,0.6);
@@ -243,3 +282,28 @@ $light_gray:#eee;
   }
 }
 </style>
+
+<style lang="scss" scoped>
+    .validate-canvas {
+        float: right;
+        width: 112px;
+        height: 40px;
+        border: 2px solid #ccc;
+        border-radius: 2px;
+    }
+    .validate-code {
+        width: 112px;
+        float: left;
+    }
+    .register {
+        font-size:14px;
+        // line-height:30px;
+        color:#fff;
+        cursor: pointer;
+        float:right;
+        border: 1px solid rgb(255, 255, 255);
+        border-radius: 2px;
+        padding: 2px;
+    }
+</style>
+

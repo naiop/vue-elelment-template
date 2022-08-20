@@ -55,7 +55,6 @@ export const constantRoutes = [
     component: () => import('@/views/404'),
     hidden: true
   },
-
   {
     path: '/',
     component: Layout,
@@ -66,6 +65,11 @@ export const constantRoutes = [
       component: () => import('@/views/dashboard/index'),
       meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
     }]
+  },
+  {
+    path: '/register', // 注册页面
+    component: () => import('@/views/register/index'),
+    hidden: true
   }
 ]
 
@@ -89,11 +93,17 @@ export const asyncRoutes = [
         meta: { title: 'Table', icon: 'table' }
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        path: 'three',
+        name: 'three',
+        component: () => import('@/views/three/index'),
+        meta: { title: 'Three', icon: 'tree' }
       }
+      // {
+      //   path: 'permission',
+      //   name: 'permission',
+      //   component: () => import('@/views/permission/permissionPage'),
+      //   meta: { title: 'Permission', icon: 'tree' }
+      // }
     ]
   },
 

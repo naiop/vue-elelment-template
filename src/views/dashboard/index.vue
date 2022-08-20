@@ -1,6 +1,7 @@
 <template>
   <div class="dashboard-container">
     <div class="dashboard-text">name: {{ name }}</div>
+
   </div>
 </template>
 
@@ -9,10 +10,26 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'Dashboard',
+  data() {
+    return {
+      listLoading: false,
+      listQuery: {
+        page: 1,
+        limit: 20,
+        account: undefined,
+        password: undefined
+      }
+    }
+  },
   computed: {
     ...mapGetters([
       'name'
     ])
+  },
+  methods: {
+    getList() {
+      this.listLoading = true
+    }
   }
 }
 </script>

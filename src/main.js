@@ -34,6 +34,7 @@ Vue.use(ElementUI, { locale })
 // Vue.use(ElementUI)
 
 Vue.config.productionTip = false
+Vue.config.devtools = true // chrome debug
 
 new Vue({
   el: '#app',
