@@ -41,7 +41,7 @@
         </span>
       </el-form-item>
 
-      <el-form-item>
+      <el-form-item v-if="identify_Enable">
         <el-input v-model="loginForm.validate" class="validate-code" placeholder="validate" />
         <div class="validate-canvas" @click="refreshCode">
           <Identify :identify-code="identifyCode" />
@@ -98,7 +98,8 @@ export default {
       },
       loading: false,
       passwordType: 'password',
-      redirect: undefined
+      redirect: undefined,
+      identify_Enable: false // 验证码启用否
     }
   },
   watch: {
@@ -145,10 +146,13 @@ export default {
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          if (this.loginForm.validate !== this.identifyCode) {
-            this.$message('验证码不正确！')
-            return
+          if (this.identify_Enable) { // 验证码开关
+            if (this.loginForm.validate !== this.identifyCode) {
+              this.$message('验证码不正确！')
+              return
+            }
           }
+
           this.loading = true
           this.$store.dispatch('user/login', this.loginForm).then(() => {
             this.$router.push({ path: this.redirect || '/' })

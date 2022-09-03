@@ -15,6 +15,8 @@ import router from './router'
 import '@/icons' // icon
 import '@/permission' // permission control
 
+import global from './utils/global.js'
+Vue.prototype.global = global
 /**
 *如果您不想使用模拟服务器
 *您想将MockJs用于模拟api

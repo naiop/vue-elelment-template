@@ -35,7 +35,7 @@ import menuRouter from './modules/menuRoute'
  */
 export const constantRoutes = [
   {
-    path: '/redirect',
+    path: '/redirect', // 重定向路由
     component: Layout,
     hidden: true,
     children: [
@@ -56,7 +56,7 @@ export const constantRoutes = [
     hidden: true
   },
   {
-    path: '/',
+    path: '/', // 首页
     component: Layout,
     redirect: '/dashboard',
     children: [{
@@ -75,7 +75,7 @@ export const constantRoutes = [
 
 /**
  * asyncRoutes
- * the routes that need to be dynamically loaded based on user roles
+ * 需要根据用户角色动态加载的路由
  */
 export const asyncRoutes = [
   menuRouter, // modules routes
@@ -84,29 +84,28 @@ export const asyncRoutes = [
     component: Layout,
     redirect: '/example/table',
     name: 'Example',
-    meta: { title: 'Example', icon: 'el-icon-s-help', roles: ['admin'] },
+    meta: { title: 'Example', icon: 'el-icon-s-help' },
     children: [
       {
         path: 'table',
         name: 'Table',
         component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        meta: { title: 'Table', icon: 'table', roles: ['editor'] }
       },
       {
         path: 'three',
         name: 'three',
         component: () => import('@/views/three/index'),
-        meta: { title: 'Three', icon: 'tree' }
+        meta: { title: 'Three', icon: 'tree', roles: ['editor'] }
+      },
+      {
+        path: 'permission',
+        name: 'permission',
+        component: () => import('@/views/permission/userpage'),
+        meta: { title: 'Permission', icon: 'tree', roles: ['admin'] }
       }
-      // {
-      //   path: 'permission',
-      //   name: 'permission',
-      //   component: () => import('@/views/permission/permissionPage'),
-      //   meta: { title: 'Permission', icon: 'tree' }
-      // }
     ]
   },
-
   {
     path: '/form',
     component: Layout,
@@ -115,7 +114,7 @@ export const asyncRoutes = [
         path: 'index',
         name: 'Form',
         component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form', roles: ['admin'] }
+        meta: { title: 'Form', icon: 'form', roles: ['editor'] }
       }
     ]
   },
@@ -129,7 +128,7 @@ export const asyncRoutes = [
       }
     ]
   },
-  // 404 page must be placed at the end !!!
+  // 404页必须放在最后！！！
   { path: '*', redirect: '/404', hidden: true }
 ]
 

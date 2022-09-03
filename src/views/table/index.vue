@@ -44,6 +44,7 @@
 </template>
 
 <script>
+// eslint-disable-next-line no-unused-vars
 import { getList } from '@/api/table'
 
 export default {
@@ -69,10 +70,19 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true
-      getList().then(response => {
-        this.list = response.data.items
-        this.listLoading = false
-      })
+      // getList().then(response => {
+      //   this.list = response.data.items
+      //   this.listLoading = false
+      // })
+      this.list = [{
+        id: '@id',
+        title: 'title',
+        'status|1': ['published', 'draft', 'deleted'],
+        author: 'name',
+        display_time: '@datetime',
+        pageviews: '@integer(300, 5000)'
+      }]
+      this.listLoading = false
     }
   }
 }

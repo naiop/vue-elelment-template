@@ -22,18 +22,16 @@
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
           <router-link to="/">
-            <el-dropdown-item>
-              Home
-            </el-dropdown-item>
+            <el-dropdown-item>Home</el-dropdown-item>
           </router-link>
           <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">
-            <el-dropdown-item>Docs</el-dropdown-item>
+            <el-dropdown-item v-permission="['developer','admin']">Docs</el-dropdown-item>
           </a>
           <a target="_blank" href="https://github.com/naiop/ILoveJS/tree/master/express">
-            <el-dropdown-item>Api Project</el-dropdown-item>
+            <el-dropdown-item v-permission="['developer','admin']">Api Project</el-dropdown-item>
           </a>
           <a target="_blank" href="http://47.103.68.175:3001/api-docs/">
-            <el-dropdown-item>API</el-dropdown-item>
+            <el-dropdown-item v-permission="['developer','admin']">API</el-dropdown-item>
           </a>
           <el-dropdown-item divided @click.native="logout">
             <span style="display:block;">Log Out</span>
@@ -52,6 +50,7 @@ import Screenfull from '@/components/Screenfull' // 全屏
 import Search from '@/components/HeaderSearch' // 路由搜索按钮
 import SettingsPanel from '@/components/SettingsPanel' // 右侧设置面板
 import Settings from '../components/Settings' // 右侧面板设置页
+import permission from '@/directive/permission/index.js' // 权限判断指令
 
 export default {
   components: {
@@ -62,6 +61,7 @@ export default {
     Settings,
     Search
   },
+  directives: { permission },
   computed: {
     ...mapGetters([
       'sidebar',

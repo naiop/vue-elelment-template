@@ -23,10 +23,21 @@ export function logout() {
   })
 }
 
+// 用户注册
 export function register(data) {
   return request({
     url: '/vue-admin-template/user/register',
     method: 'post',
     params: data
+  })
+}
+
+// 所有用户列表
+export function GetUser(query) {
+  return request({
+    url: '/vue-admin-template/user/GetUser',
+    method: 'get',
+    headers: { Authorization: 'Basic ZXhwcmVzc19hcGk6MTIzNDU2' },
+    params: query
   })
 }
