@@ -1,5 +1,5 @@
 /**
- *Created by PanJiaChen on 16/11/29.
+ *Created by
  * @param {Sting} url
  * @param {Sting} title
  * @param {Number} w

@@ -5,6 +5,7 @@ import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import { getToken } from '@/utils/auth' // get token from cookie
 import getPageTitle from '@/utils/get-page-title'
+import initWebSocket from '@/utils/webSocket' // 全局websocket
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
@@ -40,6 +41,9 @@ router.beforeEach(async(to, from, next) => {
 
           // 动态添加可访问的路由
           router.addRoutes(accessRoutes)
+
+          console.log('123')
+          initWebSocket()
 
           next({ ...to, replace: true })
         } catch (error) {
