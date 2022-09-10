@@ -24,7 +24,7 @@
           <router-link to="/">
             <el-dropdown-item>Home</el-dropdown-item>
           </router-link>
-          <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">
+          <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/zh/guide/">
             <el-dropdown-item v-permission="['developer','admin']">Docs</el-dropdown-item>
           </a>
           <a target="_blank" href="https://github.com/naiop/ILoveJS/tree/master/express">

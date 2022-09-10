@@ -1,6 +1,7 @@
 <template>
   <div class="dashboard-container">
     <el-button type="primary" icon="el-icon-search" @click="handdleMsg">submit</el-button>
+    <el-button type="primary" icon="el-icon-search" @click="handdleRoute">testRoute</el-button>
 
     <div class="dashboard-text">roles: {{ roles }}</div>
   </div>
@@ -31,6 +32,9 @@ export default {
         console.log('收到服务器内容', res)
         that.roles = res.data
       }
+    },
+    handdleRoute(msg) {
+      this.$router.push('/register')
     }
   }
 }

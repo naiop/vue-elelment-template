@@ -2,6 +2,14 @@
 <template>
   <div class="dashboard-container">
     <component :is="currentRole" />
+
+    <!--悬浮小广告样式的提示信息-->
+    <div id="thediv" ref="thediv" style="position: absolute; z-index: 111; right: 0; bottom: 0;">
+      <a href="http://xxxxxx" target="_blank">
+        <img src="@/assets/indicator.png" width="160" border="0">
+      </a>
+    </div>
+
   </div>
 </template>
 

@@ -9,7 +9,7 @@ import initWebSocket from '@/utils/webSocket' // 全局websocket
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
-const whiteList = ['/login', '/register'] // 不重定向白名单
+const whiteList = ['/login', '/register', '/desktop', '/three'] // 不重定向白名单
 
 router.beforeEach(async(to, from, next) => {
   // start progress bar
@@ -42,7 +42,6 @@ router.beforeEach(async(to, from, next) => {
           // 动态添加可访问的路由
           router.addRoutes(accessRoutes)
 
-          console.log('123')
           initWebSocket()
 
           next({ ...to, replace: true })

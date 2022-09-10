@@ -33,14 +33,16 @@
           <span>{{ row.mail }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="Active" align="center" width="160" :show-overflow-tooltip="true">
+      <el-table-column label="Active" align="center" width="90" :show-overflow-tooltip="true">
         <template slot-scope="{row}">
-          <span>{{ row.Active }}</span>
+          <!-- <span>{{ row.Active }}</span> -->
+          <el-switch v-model="row.Active" disabled active-color="#13ce66" inactive-color="#DCDFE6" />
         </template>
       </el-table-column>
       <el-table-column label="roles" align="center" width="160" :show-overflow-tooltip="true">
         <template slot-scope="{row}">
-          <span>{{ row.roles }}</span>
+          <!-- <span>{{ row.roles }}</span> -->
+          <el-tag v-for="(item, index) in row.roles.split(',')" :key="index" type="success">{{ item }}</el-tag>
         </template>
       </el-table-column>
       <el-table-column label="token" align="center" width="160" :show-overflow-tooltip="true">
@@ -61,12 +63,12 @@
 
       <el-table-column label="CreateTime" align="center" width="160" :show-overflow-tooltip="true">
         <template slot-scope="{row}">
-          <span>{{ row.CreateTime }}</span>
+          <span>{{ row.CreateTime | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
         </template>
       </el-table-column>
       <el-table-column label="UpdateTime" align="center" width="160" :show-overflow-tooltip="true">
         <template slot-scope="{row}">
-          <span>{{ row.UpdateTime }}</span>
+          <span>{{ row.UpdateTime | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
         </template>
       </el-table-column>
       <el-table-column label="操作" align="center" width="200">
@@ -98,7 +100,7 @@
 </template>
 
 <script>
-import { deepClone } from '@/utils'
+import { deepClone, parseTime } from '@/utils'
 import store from '@/store'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
 import permission from '@/directive/permission/index.js' // 权限判断指令
@@ -146,6 +148,7 @@ export default {
   },
   created() {
     this.getList()
+    console.log(parseTime('2022-08-25T00:00:00'))
   },
   methods: {
     getList() {

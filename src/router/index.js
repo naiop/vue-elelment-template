@@ -5,7 +5,7 @@ Vue.use(Router)
 
 /* Layout */
 import Layout from '@/layout'
-import menuRouter from './modules/menuRoute'
+import laboratoryRouter from './modules/laboratory'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -27,7 +27,7 @@ import menuRouter from './modules/menuRoute'
     activeMenu: '/example/list'  if set path, the sidebar will highlight the path you set
   }
  */
-
+// path http://localhost:9528/#/path path就是地址栏路径
 /**
  * constantRoutes
  * a base page that does not have permission requirements
@@ -68,7 +68,17 @@ export const constantRoutes = [
   },
   {
     path: '/register', // 注册页面
-    component: () => import('@/views/register/index'),
+    component: () => import('@/views/whiteList/register/index'),
+    hidden: true
+  },
+  {
+    path: '/desktop', //
+    component: () => import('@/views/whiteList/griddesktop/index'),
+    hidden: true
+  },
+  {
+    path: '/three', //
+    component: () => import('@/views/whiteList/threejs/full_screen_threejs'),
     hidden: true
   }
 ]
@@ -78,43 +88,47 @@ export const constantRoutes = [
  * 需要根据用户角色动态加载的路由
  */
 export const asyncRoutes = [
-  menuRouter, // modules routes
+  {
+    path: '/permission',
+    component: Layout,
+    redirect: '/permission/userpage',
+    name: 'permission',
+    meta: { title: 'Permission', icon: 'tree', roles: ['admin'] },
+    children: [
+      {
+        path: 'user',
+        name: 'user',
+        component: () => import('@/views/permission/userpage'),
+        meta: { title: 'User', icon: 'tree' }
+      },
+      {
+        path: 'route',
+        name: 'route',
+        component: () => import('@/views/permission/route'),
+        meta: { title: 'Route', icon: 'tree' }
+      }
+    ]
+  },
+  laboratoryRouter, // modules routes
+
   {
     path: '/example',
     component: Layout,
-    redirect: '/example/table',
+    redirect: '/example/three',
     name: 'Example',
     meta: { title: 'Example', icon: 'el-icon-s-help' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table', roles: ['editor'] }
-      },
-      {
         path: 'three',
         name: 'three',
         component: () => import('@/views/three/index'),
-        meta: { title: 'Three', icon: 'tree', roles: ['editor'] }
+        meta: { title: 'Three', icon: 'tree', roles: ['admin', 'editor'] }
       },
       {
-        path: 'permission',
-        name: 'permission',
-        component: () => import('@/views/permission/userpage'),
-        meta: { title: 'Permission', icon: 'tree', roles: ['admin'] }
-      }
-    ]
-  },
-  {
-    path: '/form',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form', roles: ['editor'] }
+        path: 'whiteList',
+        name: 'whiteList',
+        component: () => import('@/views/whiteList/index'),
+        meta: { title: 'WhiteListRoute', icon: 'tree', roles: ['admin', 'editor'] }
       }
     ]
   },
@@ -123,12 +137,12 @@ export const asyncRoutes = [
     component: Layout,
     children: [
       {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/zh/guide/',
+        path: 'https://github.com/',
         meta: { title: 'External Link', icon: 'link', roles: ['admin'] }
       }
     ]
   },
-  // 404页必须放在最后！！！
+  // 404页必须放在最后
   { path: '*', redirect: '/404', hidden: true }
 ]
 

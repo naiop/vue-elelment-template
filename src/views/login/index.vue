@@ -227,6 +227,7 @@ $light_gray:#eee;
   width: 100%;
   background-color: $bg;
   overflow: hidden;
+  // background-image: url("http://47.103.68.175:3001/vue-admin-template/api/bz");
   background-image: url("http://api.eleuu.com/bz.php?type=1");
   background-size: cover;
   padding-top: 160px;
