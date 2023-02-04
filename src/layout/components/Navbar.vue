@@ -8,6 +8,7 @@
       <template v-if="device!=='mobile'">
         <search id="header-search" class="right-menu-item" />
         <screenfull id="screenfull" class="right-menu-item hover-effect" />
+        <lang-select class="right-menu-item hover-effect" />
         <!-- 右侧面板设置页 -->
         <settingsPanel v-if="showSettings" id="settingsPanel" class="right-menu-item hover-effect">
           <settings />
@@ -22,19 +23,29 @@
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
           <router-link to="/">
-            <el-dropdown-item>Home</el-dropdown-item>
+            <el-dropdown-item>
+              {{ $t('navbar.dashboard') }}
+            </el-dropdown-item>
           </router-link>
           <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/zh/guide/">
-            <el-dropdown-item v-permission="['developer','admin']">Docs</el-dropdown-item>
+            <el-dropdown-item v-permission="['developer','admin']">
+              {{ $t('navbar.guide') }}
+            </el-dropdown-item>
           </a>
           <a target="_blank" href="https://github.com/naiop/ILoveJS/tree/master/express">
-            <el-dropdown-item v-permission="['developer','admin']">Api Project</el-dropdown-item>
+            <el-dropdown-item v-permission="['developer','admin']">
+              {{ $t('navbar.apiProject') }}
+            </el-dropdown-item>
           </a>
           <a target="_blank" href="http://47.103.68.175:3001/api-docs/">
-            <el-dropdown-item v-permission="['developer','admin']">API</el-dropdown-item>
+            <el-dropdown-item v-permission="['developer','admin']">
+              {{ $t('navbar.api') }}
+            </el-dropdown-item>
           </a>
           <el-dropdown-item divided @click.native="logout">
-            <span style="display:block;">Log Out</span>
+            <span style="display:block;">
+              {{ $t('navbar.logOut') }}
+            </span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -51,6 +62,7 @@ import Search from '@/components/HeaderSearch' // 路由搜索按钮
 import SettingsPanel from '@/components/SettingsPanel' // 右侧设置面板
 import Settings from '../components/Settings' // 右侧面板设置页
 import permission from '@/directive/permission/index.js' // 权限判断指令
+import LangSelect from '@/components/LangSelect'
 
 export default {
   components: {
@@ -59,7 +71,8 @@ export default {
     Screenfull,
     SettingsPanel,
     Settings,
-    Search
+    Search,
+    LangSelect
   },
   directives: { permission },
   computed: {

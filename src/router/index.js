@@ -21,7 +21,7 @@ import laboratoryRouter from './modules/laboratory'
     roles: ['admin','editor']    control the page roles (you can set multiple roles)
     title: 'title'               the name show in sidebar and breadcrumb (recommend set)
     icon: 'svg-name'/'el-icon-x' the icon show in the sidebar
-    noCache: true                if set true, the page will no be cached(default is false)
+    noCache: true                if set true, the page will no be cached(default is false) // 所以在编写路由 router 和路由对应的 view component 的时候一定要确保 两者的 name 是完全一致的 (切记 name 命名时候尽量保证唯一性 切记不要和某些组件的命名重复了，不然会递归引用最后内存溢出等问题)
     affix: true                  if set true, the tag will affix in the tags-view
     breadcrumb: false            if set false, the item will hidden in breadcrumb(default is true)
     activeMenu: '/example/list'  if set path, the sidebar will highlight the path you set
@@ -63,7 +63,7 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
+      meta: { title: 'dashboard', icon: 'dashboard', affix: true }
     }]
   },
   {
@@ -91,19 +91,19 @@ export const asyncRoutes = [
   {
     path: '/permission',
     component: Layout,
-    redirect: '/permission/userpage',
-    name: 'permission',
-    meta: { title: 'Permission', icon: 'tree', roles: ['admin'] },
+    redirect: '/permission/user',
+    name: 'Permission',
+    meta: { title: 'permission', icon: 'tree', roles: ['admin'] },
     children: [
       {
         path: 'user',
-        name: 'user',
+        name: 'User',
         component: () => import('@/views/permission/userpage'),
         meta: { title: 'User', icon: 'tree' }
       },
       {
         path: 'route',
-        name: 'route',
+        name: 'Route',
         component: () => import('@/views/permission/route'),
         meta: { title: 'Route', icon: 'tree' }
       }
@@ -120,13 +120,13 @@ export const asyncRoutes = [
     children: [
       {
         path: 'three',
-        name: 'three',
+        name: 'Three',
         component: () => import('@/views/three/index'),
         meta: { title: 'Three', icon: 'tree', roles: ['admin', 'editor'] }
       },
       {
         path: 'whiteList',
-        name: 'whiteList',
+        name: 'WhiteList',
         component: () => import('@/views/whiteList/index'),
         meta: { title: 'WhiteListRoute', icon: 'tree', roles: ['admin', 'editor'] }
       }
