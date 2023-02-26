@@ -1,8 +1,9 @@
 import request from '@/utils/request'
 
-export function getFtpItems(data) {
+// 获取配置
+export function getConfig(data) {
   return request({
-    url: '/Admin/Ftp/GetFtpItems',
+    url: '/Admin/Config/GetConfig',
     method: 'post',
     data
   })

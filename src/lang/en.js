@@ -6,6 +6,13 @@ export default {
     permission: 'Permission',
     pagePermission: 'Page Permission',
     rolePermission: 'Role Permission',
+    user: 'User',
+    menu: 'Menu',
+    config: 'Config',
+    externalLink: 'ExternalLink',
+    example: 'Example',
+    three: '3D',
+    ftp: 'FTP',
     directivePermission: 'Directive Permission',
     icons: 'Icons',
     components: 'Components',
@@ -27,7 +34,6 @@ export default {
     keyboardChart: 'Keyboard Chart',
     lineChart: 'Line Chart',
     mixChart: 'Mix Chart',
-    example: 'Example',
     nested: 'Nested Routes',
     menu1: 'Menu 1',
     'menu1-1': 'Menu 1-1',
@@ -61,7 +67,6 @@ export default {
     theme: 'Theme',
     clipboardDemo: 'Clipboard',
     i18n: 'I18n',
-    externalLink: 'External Link',
     profile: 'Profile'
   },
   navbar: {
@@ -82,7 +87,8 @@ export default {
     password: 'Password',
     any: 'any',
     thirdparty: 'Or connect with',
-    thirdpartyTips: 'Can not be simulated on local, so please combine you own business simulation! ! !'
+    thirdpartyTips: 'Can not be simulated on local, so please combine you own business simulation! ! !',
+    register: 'Register'
   },
   documentation: {
     documentation: 'Documentation',
@@ -96,7 +102,12 @@ export default {
     tips: 'In some cases, using v-permission will have no effect. For example: Element-UI  el-tab or el-table-column and other scenes that dynamically render dom. You can only do this with v-if.',
     delete: 'Delete',
     confirm: 'Confirm',
-    cancel: 'Cancel'
+    cancel: 'Cancel',
+    aboutMe: 'AboutMe',
+    basicInfo: 'BasicInfo',
+    nickName: 'NickName',
+    eMail: 'eMail',
+    introduction: 'Introduction'
   },
   guide: {
     description: 'The guide page is useful for some people who entered the project for the first time. You can briefly introduce the features of the project. Demo is based on ',
@@ -135,7 +146,8 @@ export default {
     draft: 'Draft',
     delete: 'Delete',
     cancel: 'Cancel',
-    confirm: 'Confirm'
+    confirm: 'Confirm',
+    back: 'Back'
   },
   example: {
     warning: 'Creating and editing pages cannot be cached by keep-alive because keep-alive include does not currently support caching based on routes, so it is currently cached based on component name. If you want to achieve a similar caching effect, you can use a browser caching scheme such as localStorage. Or do not use keep-alive include to cache all pages directly. See details'
@@ -174,6 +186,32 @@ export default {
     tagsView: 'Open Tags-View',
     fixedHeader: 'Fixed Header',
     sidebarLogo: 'Sidebar Logo'
+  },
+  tips: {
+    addProcess: 'Add Process',
+    viewProcess: 'View Process',
+    editProcess: 'Edit Process',
+    rulesProcessCode: 'ProcessCode is not null',
+    rulesProcessName: 'ProcessName is not null',
+    rulesEnableFlag: 'EnableFlag  is not null',
+    rulesRouteCode: 'RouteCode is not null',
+    rulesRouteName: 'RouteName is not null',
+    addProcessRoute: 'Add Process Route',
+    viewProcessRoute: 'View Process Route',
+    editProcessRoute: 'Edit Process Route',
+    rulesProcessRouteID: 'Process Route ID is not null',
+    rulesProcessID: 'Process ID is not null',
+    rulesProcessKeyFlag: 'Please KeyFlag value',
+    addProcessRouteInfo: 'Add Process Route Info',
+    editProcessRouteInfo: 'Edit Process Route Info',
+    pleaseProduct: 'Please select a product',
+    rulesParent: 'Parent field is not null',
+    rulesParentName: 'ParentName field is not null',
+    rulesOrderNum: 'OrderNum field is not null',
+    rulesItemOrProduct: 'Please select a product Or material',
+    viewProduct: 'View Product/Material',
+    addProduct: 'View Product/Material',
+    editProduct: 'View Product/Material'
   }
 }
 

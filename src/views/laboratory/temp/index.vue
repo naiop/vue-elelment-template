@@ -1,7 +1,7 @@
 <template>
   <div class="temp-container">
     <!-- xxx html 内容  -->
-    <img src="@/assets/indicator.png">
+    <img src="@/assets/autumn.png">
   </div>
 
 </template>

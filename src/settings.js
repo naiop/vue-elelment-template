@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: 'Vue Element Template',
+  title: 'Admin',
 
   showSettings: true,
 

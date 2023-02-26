@@ -3,9 +3,17 @@ export default {
     dashboard: '首页',
     documentation: '文档',
     guide: '引导页',
-    permission: '权限',
+    permission: '系统权限',
     rolePermission: '角色权限',
     pagePermission: '页面权限',
+    user: '用户管理',
+    menu: '菜单管理',
+    config: '配置管理',
+    externalLink: '外部链接',
+    example: '案例示范',
+    whiteList: '免登录菜单',
+    three: '3D可视化',
+    ftp: 'FTP 磁盘',
     directivePermission: '指令权限',
     icons: '图标',
     components: '组件',
@@ -27,7 +35,6 @@ export default {
     keyboardChart: '键盘图表',
     lineChart: '折线图',
     mixChart: '混合图表',
-    example: '综合实例',
     nested: '路由嵌套',
     menu1: '菜单1',
     'menu1-1': '菜单 1-1',
@@ -61,7 +68,6 @@ export default {
     theme: '换肤',
     clipboardDemo: 'Clipboard',
     i18n: '国际化',
-    externalLink: '外链',
     profile: '个人中心'
   },
   navbar: {
@@ -82,7 +88,8 @@ export default {
     password: '密码',
     any: '随便填',
     thirdparty: '第三方登录',
-    thirdpartyTips: '本地不能模拟，请结合自己业务进行模拟！！！'
+    thirdpartyTips: '本地不能模拟，请结合自己业务进行模拟！！！',
+    register: '注册'
   },
   documentation: {
     documentation: '文档',
@@ -96,7 +103,12 @@ export default {
     tips: '在某些情况下，不适合使用 v-permission。例如：Element-UI 的 el-tab 或 el-table-column 以及其它动态渲染 dom 的场景。你只能通过手动设置 v-if 来实现。',
     delete: '删除',
     confirm: '确定',
-    cancel: '取消'
+    cancel: '取消',
+    aboutMe: '个人信息',
+    basicInfo: '基本资料',
+    nickName: '昵称',
+    eMail: '邮箱',
+    introduction: '个人简介'
   },
   guide: {
     description: '引导页对于一些第一次进入项目的人很有用，你可以简单介绍下项目的功能。本 Demo 是基于',
@@ -135,7 +147,8 @@ export default {
     draft: '草稿',
     delete: '删除',
     cancel: '取 消',
-    confirm: '确 定'
+    confirm: '确 定',
+    back: '返回'
   },
   example: {
     warning: '创建和编辑页面是不能被 keep-alive 缓存的，因为keep-alive 的 include 目前不支持根据路由来缓存，所以目前都是基于 component name 来进行缓存的。如果你想类似的实现缓存效果，可以使用 localStorage 等浏览器缓存方案。或者不要使用 keep-alive 的 include，直接缓存所有页面。详情见'
@@ -174,6 +187,35 @@ export default {
     tagsView: '开启 Tags-View',
     fixedHeader: '固定 Header',
     sidebarLogo: '侧边栏 Logo'
+  },
+  tips: {
+    tips: '提示',
+    error: '错误',
+    message: '消息',
+    warning: '警示',
+    ipMapping: '获取IP配置信息错误，返回个数不为1：{ip}',
+    eapConfirm: '确认开始批次[{lotId}]自动化作业?',
+    eapReset: '确认重置EAP状态?',
+    webSocketNotOpen: 'WebSocket 没有开启，状态: {state}',
+    webSocketOnError: 'WebSocket服务器错误，无法接收信息！',
+    barcodeScanOnly: '请使用扫描枪输入！',
+    webSocketNotSupported: '当前浏览器无法接收实时信息，请使用谷歌浏览器！',
+    webSocketNotConnected: 'WebSocket未连接!',
+    confirmSubmit: '确认提交?',
+    confirmDelete: '确认删除?',
+    submitSuccess: '提交成功',
+    submitFail: '提交失败',
+    confirm: '确认执行操作 {action}',
+    queryIpMapping: '查询IP Mapping数据',
+    connectSocket: '连接Web Scoket',
+    waitResposne: '等待回复',
+    actionSuccess: '操作成功',
+    actionFail: '操作失败',
+    uploadFileLimit: '当前限制选择 {limit} 个文件，本次选择了 {select}} 个文件，共选择了 {total} 个文件',
+    fileOverSize: '上传文件大小不超过{size}M！',
+    fileFormatError: '请上传{format}格式!',
+    fileExits: '文件已存在 {file}!',
+    templateExist: '模板已存在！'
   }
 }
 

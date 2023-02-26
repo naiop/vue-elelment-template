@@ -16,10 +16,10 @@ import laboratoryRouter from './modules/laboratory'
  *                                if not set alwaysShow, when item has more than one children route,
  *                                it will becomes nested mode, otherwise not show the root menu
  * redirect: noRedirect           if set noRedirect will no redirect in the breadcrumb
- * name:'router-name'             the name is used by <keep-alive> (must set!!!)
+ * name:'router-name'             the name is used by <keep-alive> (must set!!!) (路由名)
  * meta : {
     roles: ['admin','editor']    control the page roles (you can set multiple roles)
-    title: 'title'               the name show in sidebar and breadcrumb (recommend set)
+    title: 'title'               the name show in sidebar and breadcrumb (recommend set) （左侧sidebar 名字，中英文键值）
     icon: 'svg-name'/'el-icon-x' the icon show in the sidebar
     noCache: true                if set true, the page will no be cached(default is false) // 所以在编写路由 router 和路由对应的 view component 的时候一定要确保 两者的 name 是完全一致的 (切记 name 命名时候尽量保证唯一性 切记不要和某些组件的命名重复了，不然会递归引用最后内存溢出等问题)
     affix: true                  if set true, the tag will affix in the tags-view
@@ -63,11 +63,11 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: 'dashboard', icon: 'dashboard', affix: true }
+      meta: { title: 'dashboard', icon: 'dashboard', noCache: false, affix: true }
     }]
   },
   {
-    path: '/register', // 注册页面
+    path: '/register', // 注册页面 http://localhost:9528/#/register   path就是地址栏URL
     component: () => import('@/views/whiteList/register/index'),
     hidden: true
   },
@@ -80,6 +80,20 @@ export const constantRoutes = [
     path: '/three', //
     component: () => import('@/views/whiteList/threejs/full_screen_threejs'),
     hidden: true
+  },
+  {
+    path: '/profile',
+    component: Layout,
+    redirect: '/profile/index',
+    hidden: true,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/profile/index'),
+        name: 'Profile',
+        meta: { title: 'profile', icon: 'user', noCache: true }
+      }
+    ]
   }
 ]
 
@@ -93,52 +107,83 @@ export const asyncRoutes = [
     component: Layout,
     redirect: '/permission/user',
     name: 'Permission',
-    meta: { title: 'permission', icon: 'tree', roles: ['admin'] },
+    meta: { title: 'permission', icon: 'tree', roles: ['admin', 'dev'] },
     children: [
       {
         path: 'user',
         name: 'User',
-        component: () => import('@/views/permission/userpage'),
-        meta: { title: 'User', icon: 'tree' }
+        component: () => import('@/views/permission/user'),
+        meta: { title: 'user', icon: 'user' }
       },
       {
-        path: 'route',
-        name: 'Route',
-        component: () => import('@/views/permission/route'),
-        meta: { title: 'Route', icon: 'tree' }
+        path: 'menu',
+        name: 'Menu',
+        component: () => import('@/views/permission/menu'),
+        meta: { title: 'menu', icon: 'nested' }
+      },
+      {
+        path: 'config',
+        name: 'Config',
+        component: () => import('@/views/permission/config'),
+        meta: { title: 'config', icon: 'setting' }
       }
     ]
   },
-  laboratoryRouter, // modules routes
+  {
+    path: '/ftp',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/ftp/ftpdisk'),
+        name: 'Ftp',
+        meta: { title: 'ftp', icon: 'ftp', noCache: true, roles: ['admin', 'administrtor'] }
+      }
+    ]
+  },
+  {
+    path: '/icon',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/icons/index'),
+        name: 'Icons',
+        meta: { title: 'icons', icon: 'ftp', noCache: true, roles: ['admin', 'administrtor'] }
+      }
+    ]
+  },
+  laboratoryRouter, // modules routes 路由太多可以分开写
 
   {
     path: '/example',
     component: Layout,
     redirect: '/example/three',
     name: 'Example',
-    meta: { title: 'Example', icon: 'el-icon-s-help' },
+    meta: { title: 'example', icon: 'el-icon-s-help', roles: ['admin', 'dev'] },
     children: [
       {
         path: 'three',
         name: 'Three',
         component: () => import('@/views/three/index'),
-        meta: { title: 'Three', icon: 'tree', roles: ['admin', 'editor'] }
+        meta: { title: 'three', noCache: true, icon: 'eye-open', roles: ['admin', 'dev'] }
       },
       {
         path: 'whiteList',
         name: 'WhiteList',
         component: () => import('@/views/whiteList/index'),
-        meta: { title: 'WhiteListRoute', icon: 'tree', roles: ['admin', 'editor'] }
+        meta: { title: 'whiteList', icon: 'tree', roles: ['admin', 'dev'] }
       }
     ]
   },
   {
     path: 'external-link',
     component: Layout,
+    name: 'Link',
     children: [
       {
         path: 'https://github.com/',
-        meta: { title: 'External Link', icon: 'link', roles: ['admin'] }
+        meta: { title: 'externalLink', icon: 'link', roles: ['admin', 'dev', 'editor', 'op'] }
       }
     ]
   },

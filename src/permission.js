@@ -9,7 +9,7 @@ import initWebSocket from '@/utils/webSocket' // 全局websocket
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
-const whiteList = ['/login', '/register', '/desktop', '/three'] // 不重定向白名单
+const whiteList = ['/login', '/register', '/desktop', '/three'] // 不重定向白名单 免登录的菜单
 
 router.beforeEach(async(to, from, next) => {
   // start progress bar
@@ -27,8 +27,8 @@ router.beforeEach(async(to, from, next) => {
       next({ path: '/' })
       NProgress.done()
     } else {
-      const hasGetUserInfo = store.getters.name
-      if (hasGetUserInfo) {
+      const hasRoles = store.getters.roles && store.getters.roles.length > 0
+      if (hasRoles) {
         next()
       } else {
         try {

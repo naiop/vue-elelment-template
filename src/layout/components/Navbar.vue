@@ -13,12 +13,12 @@
         <settingsPanel v-if="showSettings" id="settingsPanel" class="right-menu-item hover-effect">
           <settings />
         </settingsPanel>
-
       </template>
 
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <div class="avatar-wrapper">
-          <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
+          <!-- <img :src="require('@/assets/avatar/'+avatar)" class="user-avatar"> -->
+          <img :src="require('@/assets/avatar/avatar.gif')" class="user-avatar">
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
@@ -27,18 +27,28 @@
               {{ $t('navbar.dashboard') }}
             </el-dropdown-item>
           </router-link>
+          <router-link to="/profile/index">
+            <el-dropdown-item>
+              {{ $t('navbar.profile') }}
+            </el-dropdown-item>
+          </router-link>
           <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/zh/guide/">
-            <el-dropdown-item v-permission="['developer','admin']">
+            <el-dropdown-item v-permission="['developer']">
               {{ $t('navbar.guide') }}
             </el-dropdown-item>
           </a>
           <a target="_blank" href="https://github.com/naiop/ILoveJS/tree/master/express">
-            <el-dropdown-item v-permission="['developer','admin']">
+            <el-dropdown-item v-permission="['developer']">
               {{ $t('navbar.apiProject') }}
             </el-dropdown-item>
           </a>
           <a target="_blank" href="http://47.103.68.175:3001/api-docs/">
-            <el-dropdown-item v-permission="['developer','admin']">
+            <el-dropdown-item v-permission="['developer']">
+              {{ $t('navbar.api') }}
+            </el-dropdown-item>
+          </a>
+          <a target="_blank" href="http://47.103.68.175:4001/swagger">
+            <el-dropdown-item v-permission="['developer']">
               {{ $t('navbar.api') }}
             </el-dropdown-item>
           </a>

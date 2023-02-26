@@ -14,6 +14,7 @@ import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js'
 import openWindow from '@/utils/open-window'
 
 export default {
+  name: 'Three',
   data() {
     return {
       renderer: '', // 渲染器

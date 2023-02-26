@@ -5,9 +5,11 @@ import { resetRouter } from '@/router'
 const getDefaultState = () => {
   return {
     token: getToken(),
-    name: '',
-    avatar: '',
-    roles: []
+    nickName: '', // 昵称
+    avatar: '', // 头像
+    introduction: '', // 介绍
+    roles: [], // 权限集合
+    userName: '' // 登录账户
   }
 }
 
@@ -20,14 +22,20 @@ const mutations = {
   SET_TOKEN: (state, token) => {
     state.token = token
   },
-  SET_NAME: (state, name) => {
-    state.name = name
+  SET_NICKNAME: (state, nickName) => {
+    state.nickName = nickName
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
   },
+  SET_INTRODUCTION: (state, introduction) => {
+    state.introduction = introduction
+  },
   SET_ROLES: (state, roles) => {
     state.roles = roles
+  },
+  SET_USERNAME: (state, userName) => {
+    state.userName = userName
   }
 }
 
@@ -57,15 +65,18 @@ const actions = {
           return reject('Verification failed, please Login again.')
         }
 
-        const { name, avatar, roles } = data
+        const { nickName, avatar, introduction, roles, userName } = data
 
         // roles must be a non-empty array
         if (!roles || roles.length <= 0) {
           reject('getInfo: roles must be a non-null array!')
         }
-        commit('SET_ROLES', roles)
-        commit('SET_NAME', name)
+
+        commit('SET_NICKNAME', nickName)
         commit('SET_AVATAR', avatar)
+        commit('SET_INTRODUCTION', introduction)
+        commit('SET_ROLES', roles)
+        commit('SET_USERNAME', userName)
         resolve(data)
       }).catch(error => {
         reject(error)

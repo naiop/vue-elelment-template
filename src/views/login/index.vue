@@ -1,6 +1,6 @@
 <template>
   <div class="login-container">
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
+    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" size="small" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
         <h3 class="title">Login Form</h3>
@@ -53,7 +53,7 @@
       <div class="tips">
         <!-- <span style="margin-right:20px;">username: admin</span>
         <span> password: any</span> -->
-        <p class="register" @click="handleRegister()">注册</p>
+        <p class="register" @click="handleRegister()">{{ $t('login.register') }}</p>
       </div>
 
     </el-form>

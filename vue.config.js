@@ -6,7 +6,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-const name = defaultSettings.title || 'vue Admin Template' // page title
+const name = defaultSettings.title || 'Admin' // page title
 
 // If your port is set to 80,
 // use administrator privileges to execute the command line.
@@ -40,8 +40,8 @@ module.exports = {
       // change xxx-api/login => mock/login
       // detail: https://cli.vuejs.org/config/#devserver-proxy
       [process.env.VUE_APP_BASE_API]: {
-        target: `http://localhost:3001`,
-        // target: `http://47.103.68.175:3001`,
+        // target: `http://192.168.0.102:8887`,
+        target: `http://172.24.51.149:8887`,
         // target: `http://localhost:${port}/mock`,
         changeOrigin: true,
         pathRewrite: {
