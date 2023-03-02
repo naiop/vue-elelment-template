@@ -284,12 +284,12 @@ export default {
       })
     },
     confirmEntity() {
-      this.$refs['dataForm'].validate((valid) => {
+      this.$refs['dataForm'].validate(async(valid) => {
         if (valid) {
           if (this.dialogType === 'edit') {
             this.entity.updateTime = new Date()
             this.entity.updateUser = this.$store.getters.userName
-            updateUser(this.entity).then(response => {
+            await updateUser(this.entity).then(response => {
               this.$notify({
                 title: 'Success',
                 message: response.data.message,
@@ -304,7 +304,7 @@ export default {
             this.entity.createUser = this.$store.getters.userName
             this.entity.updateTime = new Date()
             this.entity.updateUser = this.$store.getters.userName
-            addUser(this.entity).then(response => {
+            await addUser(this.entity).then(response => {
               this.$notify({
                 title: 'Success',
                 message: response.data.message,

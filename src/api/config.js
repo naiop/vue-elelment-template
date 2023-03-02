@@ -5,6 +5,7 @@ export function getConfig(data) {
   return request({
     url: '/Admin/Config/GetConfig',
     method: 'post',
-    data
+    data,
+    params: data
   })
 }

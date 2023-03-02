@@ -107,37 +107,46 @@ export const asyncRoutes = [
     component: Layout,
     redirect: '/permission/user',
     name: 'Permission',
-    meta: { title: 'permission', icon: 'tree', roles: ['admin', 'dev'] },
+    meta: { title: 'permission', icon: 'tree', roles: ['developer'] },
     children: [
       {
         path: 'user',
         name: 'User',
         component: () => import('@/views/permission/user'),
-        meta: { title: 'user', icon: 'user' }
+        meta: { title: 'user', icon: 'user', roles: ['developer'] }
       },
       {
         path: 'menu',
         name: 'Menu',
         component: () => import('@/views/permission/menu'),
-        meta: { title: 'menu', icon: 'nested' }
+        meta: { title: 'menu', icon: 'nested', roles: ['developer'] }
       },
       {
         path: 'config',
         name: 'Config',
         component: () => import('@/views/permission/config'),
-        meta: { title: 'config', icon: 'setting' }
+        meta: { title: 'config', icon: 'setting', roles: ['developer'] }
       }
     ]
   },
   {
     path: '/ftp',
     component: Layout,
+    redirect: '/ftp/ftpdisk',
+    name: 'FTPHome',
+    meta: { title: 'ftp', icon: 'ftp', roles: ['developer'] },
     children: [
       {
-        path: 'index',
+        path: 'ftpdisk',
         component: () => import('@/views/ftp/ftpdisk'),
         name: 'Ftp',
-        meta: { title: 'ftp', icon: 'ftp', noCache: true, roles: ['admin', 'administrtor'] }
+        meta: { title: 'ftp', icon: 'el-icon-s-data', roles: ['developer'] }
+      },
+      {
+        path: 'uploadFile',
+        component: () => import('@/views/ftp/uploadFile'),
+        name: 'UploadFile',
+        meta: { title: 'uploadFile', icon: 'el-icon-upload', roles: ['developer'] }
       }
     ]
   },
@@ -149,7 +158,7 @@ export const asyncRoutes = [
         path: 'index',
         component: () => import('@/views/icons/index'),
         name: 'Icons',
-        meta: { title: 'icons', icon: 'ftp', noCache: true, roles: ['admin', 'administrtor'] }
+        meta: { title: 'icons', icon: 'ftp', roles: ['developer'] }
       }
     ]
   },
@@ -160,19 +169,19 @@ export const asyncRoutes = [
     component: Layout,
     redirect: '/example/three',
     name: 'Example',
-    meta: { title: 'example', icon: 'el-icon-s-help', roles: ['admin', 'dev'] },
+    meta: { title: 'example', icon: 'el-icon-s-help', roles: ['developer'] },
     children: [
       {
         path: 'three',
         name: 'Three',
         component: () => import('@/views/three/index'),
-        meta: { title: 'three', noCache: true, icon: 'eye-open', roles: ['admin', 'dev'] }
+        meta: { title: 'three', icon: 'eye-open', roles: ['developer'] }
       },
       {
         path: 'whiteList',
         name: 'WhiteList',
         component: () => import('@/views/whiteList/index'),
-        meta: { title: 'whiteList', icon: 'tree', roles: ['admin', 'dev'] }
+        meta: { title: 'whiteList', icon: 'tree', roles: ['developer'] }
       }
     ]
   },
@@ -183,7 +192,7 @@ export const asyncRoutes = [
     children: [
       {
         path: 'https://github.com/',
-        meta: { title: 'externalLink', icon: 'link', roles: ['admin', 'dev', 'editor', 'op'] }
+        meta: { title: 'externalLink', icon: 'link', roles: ['developer'] }
       }
     ]
   },

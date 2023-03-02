@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard-container">
+  <div class="container">
     <div class="dashboard-text">name: {{ nickName }}</div>
     <div class="dashboard-text">roles: {{ roles }}</div>
   </div>
@@ -28,6 +28,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container {
+}
 .dashboard {
   &-container {
     margin: 30px;

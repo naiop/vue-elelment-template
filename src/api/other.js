@@ -7,3 +7,12 @@ export function getFtpItems(data) {
     data
   })
 }
+export function upLoadFile(data) {
+  return request({
+    timeout: 15000,
+    url: '/Admin/Ftp/UpLoadFile',
+    method: 'post',
+    data
+  })
+}
+

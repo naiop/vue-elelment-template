@@ -1,15 +1,7 @@
 <!-- 这种方式可以根据Roles 展示不同界面 -->
 <template>
-  <div class="dashboard-container">
+  <div class="container">
     <component :is="currentRole" />
-
-    <!--悬浮小广告样式的提示信息-->
-    <div id="thediv" ref="thediv" style="position: absolute; z-index: 111; right: 0; bottom: 0;">
-      <a href="http://xxxxxx" target="_blank">
-        <img src="@/assets/autumn.png" width="160" border="0">
-      </a>
-    </div>
-
   </div>
 </template>
 

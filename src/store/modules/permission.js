@@ -15,7 +15,8 @@ const componentMap = { // 异步的方式
   'Menu1-1': () => import('@/views/laboratory/menu1/menu1-1'),
   'Menu1-2': () => import('@/views/laboratory/menu1/menu1-2'),
   'Menu1-3': () => import('@/views/laboratory/menu1/menu1-3'),
-  Icons: () => import('@/views/icons/index')
+  Icons: () => import('@/views/icons/index'),
+  UploadFile: () => import('@/views/ftp/uploadFile')
 }
 
 /**

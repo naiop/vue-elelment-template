@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.name" size="small" placeholder="name" clearable style="width: 200px;" class="filter-item" />
+      <el-input v-model="listQuery.configName" size="small" placeholder="name" clearable style="width: 200px;" class="filter-item" />
       <el-input v-model="listQuery.userId" size="small" placeholder="userId" clearable style="width: 200px;" class="filter-item" />
       <el-switch v-model="listQuery.active" inactive-text="是否启用" class="filter-item" />
       <el-button v-waves class="filter-item" size="mini" type="primary" icon="el-icon-search" @click="getList"> 查询 </el-button>
@@ -42,7 +42,7 @@
 
     <el-dialog :visible.sync="dialogVisible" size="small" :title="dialogType==='edit'?'Edit Config':'New Config'">
       <el-form ref="dataForm" :model="config" size="small" :rules="rules" label-width="110px" label-position="left" style="width: 420px; margin-left:40px;">
-        <el-form-item label="name" prop="name">
+        <el-form-item label="name" prop="configName">
           <el-input v-model="config.configName" placeholder="类型名称" />
         </el-form-item>
         <el-form-item label="paramName" prop="paramName">
@@ -96,12 +96,12 @@ export default {
       listQuery: {
         page: 1,
         limit: 10,
-        name: 'Roles',
+        configName: 'Roles',
         userId: 0,
         active: true
       },
       rules: {
-        name: [{ required: true, message: 'Name is required', trigger: 'change' }],
+        configName: [{ required: true, message: 'Name is required', trigger: 'change' }],
         paramName: [{ required: true, message: 'ParamName is required', trigger: 'change' }],
         paramValue: [{ required: true, message: 'ParamValue is required', trigger: 'change' }]
       }
