@@ -130,21 +130,21 @@ export const asyncRoutes = [
     ]
   },
   {
-    path: '/ftp',
+    path: '/files',
     component: Layout,
-    redirect: '/ftp/ftpdisk',
+    redirect: '/files/ftpdisk',
     name: 'FTPHome',
-    meta: { title: 'ftp', icon: 'ftp', roles: ['developer'] },
+    meta: { title: 'files', icon: 'el-icon-s-data', roles: ['developer'] },
     children: [
       {
         path: 'ftpdisk',
-        component: () => import('@/views/ftp/ftpdisk'),
+        component: () => import('@/views/files/ftpdisk'),
         name: 'Ftp',
         meta: { title: 'ftp', icon: 'el-icon-s-data', roles: ['developer'] }
       },
       {
         path: 'uploadFile',
-        component: () => import('@/views/ftp/uploadFile'),
+        component: () => import('@/views/files/uploadFile'),
         name: 'UploadFile',
         meta: { title: 'uploadFile', icon: 'el-icon-upload', roles: ['developer'] }
       }
@@ -158,7 +158,7 @@ export const asyncRoutes = [
         path: 'index',
         component: () => import('@/views/icons/index'),
         name: 'Icons',
-        meta: { title: 'icons', icon: 'ftp', roles: ['developer'] }
+        meta: { title: 'icons', icon: 'el-icon-s-tools', roles: ['developer'] }
       }
     ]
   },

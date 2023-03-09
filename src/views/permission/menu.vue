@@ -233,12 +233,12 @@ export default {
         aLink.click()
       }).catch((e) => {
         this.$message({
-          type: 'info',
+          type: 'error',
           message: this.$t(e)
         })
       }).finally(() => {
         this.$message({
-          type: 'info',
+          type: 'success',
           message: this.$t('download success')
         })
       })

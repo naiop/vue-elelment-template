@@ -59,7 +59,7 @@
 <script>
 import permission from '@/directive/permission/index.js' // 权限判断指令
 import waves from '@/directive/waves' // 指令waves 水波纹效果
-import { getFtpItems, upLoadFile } from '@/api/other'
+import { getFtpItems, upLoadFile } from '@/api/file'
 
 export default {
   name: 'Ftp',

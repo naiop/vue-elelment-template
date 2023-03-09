@@ -12,20 +12,19 @@
       <el-table-column align="center" label="Id" width="60">
         <template slot-scope="{row}">  {{ row.id }}</template>
       </el-table-column>
-      <el-table-column align="center" label="userId" width="100">
+      <el-table-column align="center" label="UserId" width="100">
         <template slot-scope="{row}"> {{ row.userId }}</template>
       </el-table-column>
-      <el-table-column align="center" label="configName" width="100">
+      <el-table-column align="center" label="ConfigName" width="100">
         <template slot-scope="{row}"> {{ row.configName }} </template>
       </el-table-column>
-      <el-table-column align="center" label="paramName" width="180">
+      <el-table-column align="center" label="ParamName" width="180">
         <template slot-scope="{row}">  {{ row.paramName }} </template>
       </el-table-column>
-      <el-table-column align="center" label="paramValue" width="180">
+      <el-table-column align="center" label="ParamValue" width="180">
         <template slot-scope="{row}"> {{ row.paramValue }} </template>
       </el-table-column>
-      <el-table-column align="header-center" label="active" :show-overflow-tooltip="true" width="160">
-        <!-- <template slot-scope="{row}"> {{ row.active }} </template> -->
+      <el-table-column align="header-center" label="Active" :show-overflow-tooltip="true" width="160">
         <template slot-scope="{$index,row}">
           <el-switch v-model="row.active" active-color="#13ce66" inactive-color="#DCDFE6" @change="changeSwitch($index, row)" />
         </template>

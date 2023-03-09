@@ -100,8 +100,8 @@
               <el-option
                 v-for="item in roles"
                 :key="item.id"
-                :label="item.name"
-                :value="item.name"
+                :label="item.paramName"
+                :value="item.paramName"
               />
             </el-select>
             <el-button v-waves size="small" style="background-color: #1890ff;color: #fff;" @click="handleAddUserRoles()">{{ $t('table.add') }} </el-button>
@@ -142,6 +142,7 @@
 <script>
 // eslint-disable-next-line no-unused-vars
 import { getUser, addUser, updateUser, deleteUser } from '@/api/user'
+import { getConfig } from '@/api/config'
 import Mallki from '@/components/TextHoverEffect/Mallki' // hover text 文字效果
 
 const defaultEntity = {
@@ -185,30 +186,7 @@ export default {
       listLoading: false,
       activeName: 'Tabs1', // tab
       selectRoles: undefined,
-      roles: [{
-        id: 1,
-        userId: undefined,
-        name: 'admin',
-        description: '管理员'
-      },
-      {
-        id: 2,
-        userId: undefined,
-        name: 'developer',
-        description: '开发者'
-      },
-      {
-        id: 3,
-        userId: undefined,
-        name: 'editor',
-        description: '操作者'
-      },
-      {
-        id: 4,
-        userId: undefined,
-        name: 'employee',
-        description: '普通用户'
-      }],
+      roles: [],
       listQuery: {
         page: 1,
         limit: 10,
@@ -226,8 +204,14 @@ export default {
   },
   created() {
     this.getList()
+    this.getListRoles()
   },
   methods: {
+    async getListRoles() {
+      getConfig({ configName: 'Roles' }).then(res => {
+        this.roles = res.data.items
+      })
+    },
     getList() {
       this.listLoading = true
       getUser(this.listQuery).then(response => {
@@ -256,8 +240,8 @@ export default {
     },
     handleAddUserRoles() {
       this.roles.forEach(element => {
-        if (element.name === this.selectRoles) {
-          this.entityRoles.push({ id: element.id, userId: this.entity.id, name: element.name, description: element.description })
+        if (element.paramName === this.selectRoles) {
+          this.entityRoles.push({ id: element.id, userId: this.entity.id, name: element.paramValue, description: element.paramName })
         }
       })
       this.selectRoles = null

@@ -6,7 +6,7 @@ const componentMap = { // 异步的方式
   User: () => import('@/views/permission/user'),
   Menu: () => import('@/views/permission/menu'),
   Config: () => import('@/views/permission/config'),
-  Ftp: () => import('@/views/ftp/ftpdisk'),
+  Ftp: () => import('@/views/files/ftpdisk'),
   WhiteList: () => import('@/views/whiteList/index'),
   Three: () => import('@/views/three/index'),
   WebSocket: () => import('@/views/laboratory/webSocket/index'),
@@ -16,7 +16,7 @@ const componentMap = { // 异步的方式
   'Menu1-2': () => import('@/views/laboratory/menu1/menu1-2'),
   'Menu1-3': () => import('@/views/laboratory/menu1/menu1-3'),
   Icons: () => import('@/views/icons/index'),
-  UploadFile: () => import('@/views/ftp/uploadFile')
+  UploadFile: () => import('@/views/files/uploadFile')
 }
 
 /**
