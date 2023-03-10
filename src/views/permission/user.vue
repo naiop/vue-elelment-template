@@ -21,7 +21,7 @@
           </el-button>
         </template>
       </el-table-column>
-      <el-table-column v-permission="['developer']" label="Password" align="center" width="110">
+      <el-table-column v-if="false" label="Password" align="center" width="110">
         <template slot-scope="{row}">
           <span>{{ row.password }}</span>
         </template>
@@ -41,7 +41,7 @@
           <el-switch v-model="row.active" active-color="#13ce66" inactive-color="#DCDFE6" @change="changeSwitch($index, row)" />
         </template>
       </el-table-column>
-      <el-table-column v-permission="['developer']" label="Roles" align="center" width="160" :show-overflow-tooltip="true">
+      <el-table-column v-if="false" label="Roles" align="center" width="160" :show-overflow-tooltip="true">
         <template slot-scope="{row}">
           <el-tag v-for="item in row.rolesList" :key="item.id" type="success">{{ item.name }}</el-tag>
         </template>
@@ -51,7 +51,7 @@
           <span>{{ row.introduction }}</span>
         </template>
       </el-table-column>
-      <el-table-column v-permission="['developer']" label="Avatar" align="center" width="160" :show-overflow-tooltip="true">
+      <el-table-column v-if="false" label="Avatar" align="center" width="160" :show-overflow-tooltip="true">
         <template slot-scope="{row}">
           <span>{{ row.avatar }}</span>
         </template>

@@ -10,6 +10,7 @@ import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
 import { FXAAShader } from 'three/examples/jsm/shaders/FXAAShader.js'
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js'
+import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js' // STL 模型加载库
 import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js'
 import openWindow from '@/utils/open-window'
 
@@ -49,6 +50,8 @@ export default {
       this.initCamera()// 初始化相机
       this.initLight()// 初始化光线
       this.Panel() // 地面
+      this.STLModel()
+      this.Box()
       this.Model()
       this.initGUI() // GUI
       this.initRenender()// 初始化渲染器
@@ -109,6 +112,104 @@ export default {
 
       // const dirLightHelper = new THREE.DirectionalLightHelper(dirLight, 10)
       //  this.scene.add(dirLightHelper)
+    },
+    // STL 模型
+    STLModel() {
+      const loader1 = new STLLoader()
+      const Path1 = 'models/lj.stl'
+      const _this = this
+      loader1.load(Path1, function(geometry) {
+        var material = new THREE.MeshPhongMaterial({
+          color: '#69f'
+        })
+
+        const mesh = new THREE.Mesh(geometry, material)
+        mesh.position.set(0, 0, 0) // yzx
+        mesh.rotation.set(-Math.PI / 2, 0, 0)
+        mesh.scale.set(0.01, 0.01, 0.01)
+        mesh.castShadow = true
+        mesh.receiveShadow = true
+        mesh.name = '货架'
+        _this.scene.add(mesh) // 网格模型添加到场景中
+      })
+    },
+    // box
+    Box() {
+      const cubeGeo = new THREE.BoxBufferGeometry(5, 3, 5)
+      const cubeMaterial = new THREE.MeshLambertMaterial({
+        color: 0xfeb74c,
+        map: new THREE.TextureLoader().load('models/box.png')
+      })
+      const voxel = new THREE.Mesh(cubeGeo, cubeMaterial)
+      voxel.position.set(-16.5, 12, 0)
+      voxel.name = '货物$1'
+      this.scene.add(voxel)
+
+      const voxel2 = voxel.clone()
+      voxel2.position.set(-11, 4, 0)
+      voxel2.name = '货物$2'
+      this.scene.add(voxel2)
+
+      const voxel3 = voxel.clone()
+      voxel3.position.set(-5.5, 4, 0)
+      voxel3.name = '货物$3'
+      this.scene.add(voxel3)
+
+      const voxel4 = voxel.clone()
+      voxel4.position.set(0, 12, 0)
+      voxel4.name = '货物$4'
+      this.scene.add(voxel4)
+
+      const voxel5 = voxel.clone()
+      voxel5.position.set(5.5, 20, 0)
+      voxel5.name = '货物$5'
+      this.scene.add(voxel5)
+
+      const voxel6 = voxel.clone()
+      voxel6.position.set(11, 4, 0)
+      voxel6.name = '货物$6'
+      this.scene.add(voxel6)
+
+      const voxel7 = voxel.clone()
+      voxel7.position.set(16.5, 20, 0)
+      voxel7.name = '货物$7'
+      this.scene.add(voxel7)
+
+      // //
+      const voxel11 = voxel.clone()
+      voxel11.position.set(-16.5, 28, 0)
+      voxel11.name = '货物$8'
+      this.scene.add(voxel11)
+
+      const voxel12 = voxel.clone()
+      voxel12.position.set(-11, 16, 0)
+      voxel12.name = '货物$9'
+      this.scene.add(voxel12)
+
+      const voxel13 = voxel.clone()
+      voxel13.position.set(-11, 28, 0)
+      voxel13.name = '货物$10'
+      this.scene.add(voxel13)
+
+      const voxel14 = voxel.clone()
+      voxel14.position.set(0, 8, 0)
+      voxel14.name = '货物$11'
+      this.scene.add(voxel14)
+
+      const voxel15 = voxel.clone()
+      voxel15.position.set(5.5, 28, 0)
+      voxel15.name = '货物$12'
+      this.scene.add(voxel15)
+
+      const voxel16 = voxel.clone()
+      voxel16.position.set(11, 28, 0)
+      voxel16.name = '货物$13'
+      this.scene.add(voxel16)
+
+      const voxel17 = voxel.clone()
+      voxel17.position.set(16.5, 8, 0)
+      voxel17.name = '货物$14'
+      this.scene.add(voxel17)
     },
     // 控制
     ininControl() {
@@ -275,8 +376,9 @@ export default {
 
 <style>
 .webgl_style{
- position: absolute;
- width: 100%;
- height: calc(100vh - 90px); /* 高度减去 面包屑-撑满 */
+ background-color: cornflowerblue;
+
+ height: 100px; /* 高度减去 面包屑-撑满 */
+ height: calc(100vh - 85px);
 }
 </style>

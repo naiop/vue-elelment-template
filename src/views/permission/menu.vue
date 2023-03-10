@@ -92,6 +92,7 @@
         </el-table-column>
         <el-table-column label="Icon" align="center" width="110">
           <template slot-scope="{row}">
+            <i :class="row.icon" />
             <svg-icon :icon-class="row.icon" />
             <!-- <span>{{ row.icon }}</span> -->
           </template>
