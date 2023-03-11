@@ -60,6 +60,7 @@
 import permission from '@/directive/permission/index.js' // 权限判断指令
 import waves from '@/directive/waves' // 指令waves 水波纹效果
 import { getFtpItems, upLoadFile } from '@/api/file'
+import { storageget, storageset } from '@/utils'
 
 export default {
   name: 'Ftp',
@@ -100,6 +101,7 @@ export default {
 
   },
   created() {
+    this.listQuery = storageget('ftp') || []
   },
   methods: {
     handleFilter() {
@@ -111,6 +113,7 @@ export default {
       getFtpItems(this.listQuery).then(response => {
         this.treeData = JSON.parse(response.data)
         this.treeLoading = false
+        storageset('ftp', this.listQuery)
       }).catch(() => {
         this.treeData = []
         this.treeLoading = false

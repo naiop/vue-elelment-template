@@ -377,7 +377,6 @@ export default {
 <style>
 .webgl_style{
  background-color: cornflowerblue;
-
  height: 100px; /* 高度减去 面包屑-撑满 */
  height: calc(100vh - 85px);
 }

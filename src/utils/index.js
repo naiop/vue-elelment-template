@@ -208,3 +208,17 @@ export function deepClone(source) {
 export function uniqueArr(arr) {
   return Array.from(new Set(arr))
 }
+
+export function storageset(key, value) {
+  localStorage.setItem(key, JSON.stringify(value))
+}
+export function storageget(key) {
+  if (localStorage.getItem(key) !== '') {
+    return JSON.parse(localStorage.getItem(key))
+  } else {
+    return null
+  }
+}
+export function storagesetremove(key) {
+  localStorage.removeItem(key)
+}

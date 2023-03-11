@@ -1,11 +1,10 @@
 <template>
   <div class="app-container">
     <el-row>
-      <el-button type="primary" icon="el-icon-edit" circle @click="handdleRoute('desktop')" />
-      <el-button type="success" icon="el-icon-check" circle @click="handdleRoute('register')" />
-      <el-button type="info" icon="el-icon-message" circle @click="handdleRoute('three')" />
-      <el-button type="warning" icon="el-icon-star-off" circle />
-      <el-button type="danger" icon="el-icon-delete" circle />
+      <el-button type="success" icon="el-icon-star-off" @click="handdleRoute('desktop')">desktop</el-button>
+      <el-button type="success" icon="el-icon-star-off" @click="handdleRoute('register')">register</el-button>
+      <el-button type="success" icon="el-icon-star-off" @click="handdleRoute('three')">three</el-button>
+
     </el-row>
   </div>
 </template>
