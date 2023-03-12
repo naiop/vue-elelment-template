@@ -9,13 +9,13 @@
     </div>
 
     <el-table v-loading="listLoading" row-key="id" :data="list" border fit highlight-current-row :row-class-name="tableRowClassName" :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
-      <el-table-column label="ID" prop="id" sortable="custom" align="center" width="80">
+      <el-table-column label="ID" prop="id" sortable="custom" align="center" width="120">
         <template slot-scope="{row}"> <span>{{ row.id }}</span> </template>
       </el-table-column>
       <el-table-column label="Path" width="150px" align="center">
         <template slot-scope="{row}"><span>{{ row.path }}</span></template>
       </el-table-column>
-      <el-table-column label="Component" width="110px" align="center">
+      <el-table-column label="Component" width="110px" align="center" :show-overflow-tooltip="true">
         <template slot-scope="{row}"><span>{{ row.component }}</span></template>
       </el-table-column>
       <el-table-column label="Hidden" width="110px" align="center">

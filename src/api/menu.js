@@ -33,6 +33,24 @@ export function exportExcel(data, query) {
 
 // 后端获取菜单
 export function getAsyncRoutes(data, query) {
+  return new Promise((resolve, reject) => {
+    axios({
+      baseURL: process.env.VUE_APP_BASE_API,
+      method: 'Post',
+      headers: {
+      },
+      url: '/Admin/Menu/GetAsyncRoutes',
+      params: query,
+      data
+    }).then(res => {
+      resolve(res.data)
+    }).catch(err => {
+      reject(err)
+    })
+  })
+}
+// 后端获取菜单
+export function getAsyncRoutes_bug(data, query) {
   return request({
     url: '/Admin/Menu/GetAsyncRoutes',
     method: 'post',

@@ -1,22 +1,26 @@
 import { asyncRoutes, constantRoutes } from '@/router'
 import { getAsyncRoutes } from '@/api/menu'
+
 // 组件对象与 后端返回component字段进行的关系映射
-const componentMap = { // 异步的方式
+const componentMap = {
   Layout: () => import('@/layout'),
-  User: () => import('@/views/permission/user'),
-  Menu: () => import('@/views/permission/menu'),
-  Config: () => import('@/views/permission/config'),
-  Ftp: () => import('@/views/files/ftpdisk'),
-  WhiteList: () => import('@/views/whiteList/index'),
-  Three: () => import('@/views/three/index'),
-  WebSocket: () => import('@/views/laboratory/webSocket/index'),
-  Form: () => import('@/views/laboratory/form/index'),
-  Template: () => import('@/views/laboratory/temp/index'),
-  'Menu1-1': () => import('@/views/laboratory/menu1/menu1-1'),
-  'Menu1-2': () => import('@/views/laboratory/menu1/menu1-2'),
-  'Menu1-3': () => import('@/views/laboratory/menu1/menu1-3'),
-  Icons: () => import('@/views/icons/index'),
-  UploadFile: () => import('@/views/files/uploadFile')
+  '@/views/icons/index.vue': () => import('@/views/icons/index.vue'),
+  '@/views/permission/user.vue': () => import('@/views/permission/user.vue'),
+  '@/views/permission/menu.vue': () => import('@/views/permission/menu.vue'),
+  '@/views/permission/config.vue': () => import('@/views/permission/config.vue'),
+  '@/views/files/ftpdisk.vue': () => import('@/views/files/ftpdisk.vue'),
+  '@/views/files/uploadFile.vue': () => import('@/views/files/uploadFile.vue'),
+  '@/views/three/index.vue': () => import('@/views/three/index.vue'),
+  '@/views/whiteList/index.vue': () => import('@/views/whiteList/index.vue'),
+  '@/views/laboratory/menu1/index.vue': () => import('@/views/laboratory/menu1/index.vue'),
+  '@/views/laboratory/menu1/menu1-1/index.vue': () => import('@/views/laboratory/menu1/menu1-1/index.vue'),
+  '@/views/laboratory/menu1/menu1-2/index.vue': () => import('@/views/laboratory/menu1/menu1-2/index.vue'),
+  '@/views/laboratory/menu1/menu1-2/menu1-2-1/index.vue': () => import('@/views/laboratory/menu1/menu1-2/menu1-2-1/index.vue'),
+  '@/views/laboratory/menu1/menu1-2/menu1-2-2/index.vue': () => import('@/views/laboratory/menu1/menu1-2/menu1-2-2/index.vue'),
+  '@/views/laboratory/menu1/menu1-3/index.vue': () => import('@/views/laboratory/menu1/menu1-3/index.vue'),
+  '@/views/laboratory/webSocket/index.vue': () => import('@/views/laboratory/webSocket/index.vue'),
+  '@/views/laboratory/form/index.vue': () => import('@/views/laboratory/form/index.vue'),
+  '@/views/laboratory/temp/index.vue': () => import('@/views/laboratory/temp/index.vue')
 }
 
 /**
@@ -53,6 +57,53 @@ export function filterAsyncRoutes(routes, roles) {
   return res
 }
 
+/**
+ * 通过componentMap异步路由表
+ * @param view
+ * @returns
+ */
+export const loadView = (view) => {
+  return componentMap[view]
+}
+
+/**
+ * 把从后端查询的菜单数据拼装成路由格式的数据
+ * @param routes
+ * @param data 后端返回的菜单数据
+ */
+export function generaMenu(routes, data) {
+  data.forEach(item => {
+    console.log(item)
+    var menu
+    if (item.children) {
+      menu = {
+        path: item.path,
+        component: loadView(item.component),
+        hidden: item.hidden === 0, // 状态为0的隐藏
+        redirect: item.redirect,
+        children: [],
+        name: item.name,
+        meta: item.meta
+      }
+    } else {
+      menu = {
+        path: item.path,
+        component: loadView(item.component),
+        hidden: item.hidden === 0, // 状态为0的隐藏
+        redirect: item.redirect,
+        name: item.name,
+        meta: item.meta
+      }
+    }
+
+    if (item.children) {
+      generaMenu(menu.children, item.children)
+    }
+    routes.push(menu)
+  })
+  return routes
+}
+
 const state = {
   routes: [],
   addRoutes: []
@@ -74,121 +125,13 @@ const actions = {
         key: false
       }
       const resMenu = await getAsyncRoutes(listQuery)
-      const treeList = resMenu.data
-      try {
-        // 将后端返回的数据格式处理成 合适的数据格式
-        for (let i = 0; i < treeList.length; i++) {
-          delete treeList[i].id
-          delete treeList[i].metaId
-          delete treeList[i].parentId
-          // treeList[i].meta.breadcrumb = false
-          if (treeList[i].component && typeof (treeList[i].component === 'string')) {
-            treeList[i].component = componentMap[treeList[i].component]
-          }
-          if (treeList[i].children) {
-            for (let k = 0; k < treeList[i].children.length; k++) {
-              delete treeList[i].children[k].id
-              delete treeList[i].metaId
-              delete treeList[i].children[k].parentId
-              if (
-                treeList[i].children[k].component && typeof (treeList[i].children[k].component === 'string')
-              ) {
-                treeList[i].children[k].component = componentMap[treeList[i].children[k].component]
-              }
-            }
-          }
-        }
-      } catch (error) {
-        console.log('parse menu erro')
-      }
-
-      // 前端模拟的数据
-      // eslint-disable-next-line no-unused-vars
-      const menusTest = [
-        {
-          id: 1,
-          path: '/permission',
-          component: componentMap['Layout'],
-          redirect: '/permission/user',
-          name: 'Permission',
-          hidden: false,
-          alwaysShow: true,
-          meta: {
-            id: 1,
-            rolesString: 'admin,editor',
-            title: 'permission',
-            icon: 'tree',
-            noCache: true,
-            breadcrumb: false,
-            affix: true,
-            activeMenu: '1',
-            roles: [
-              'admin',
-              'editor'
-            ]
-          },
-          children: [
-            {
-              id: 6,
-              path: 'user',
-              component: componentMap['User'],
-              redirect: '',
-              name: 'User',
-              hidden: false,
-              alwaysShow: false,
-              meta: {
-                id: 2,
-                rolesString: 'admin,editor',
-                title: 'user',
-                icon: 'user',
-                noCache: true,
-                breadcrumb: true,
-                affix: true,
-                activeMenu: '1',
-                roles: [
-                  'admin',
-                  'editor'
-                ]
-              },
-              children: [],
-              metaId: 2,
-              parentId: 1
-            },
-            {
-              id: 7,
-              path: 'menu',
-              component: componentMap['Menu'],
-              redirect: '',
-              name: 'Menu',
-              hidden: false,
-              alwaysShow: false,
-              meta: {
-                id: 3,
-                rolesString: 'admin,editor',
-                title: 'menu',
-                icon: 'nested',
-                noCache: true,
-                breadcrumb: false,
-                affix: true,
-                activeMenu: '1',
-                roles: ['admin', 'editor']
-              },
-              children: [],
-              metaId: 3,
-              parentId: 1
-            }
-          ],
-          metaId: 1,
-          parentId: 0
-        },
-        { path: '*', redirect: '/404', hidden: true }
-      ]
+      const MenuTreeList = generaMenu([], resMenu.data)
 
       let accessedRoutes
       if (roles.includes('developer')) {
         accessedRoutes = asyncRoutes || []
       } else {
-        accessedRoutes = filterAsyncRoutes(treeList, roles)
+        accessedRoutes = filterAsyncRoutes(MenuTreeList, roles)
       }
       commit('SET_ROUTES', accessedRoutes)
       resolve(accessedRoutes)
