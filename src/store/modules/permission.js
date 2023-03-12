@@ -73,7 +73,6 @@ export const loadView = (view) => {
  */
 export function generaMenu(routes, data) {
   data.forEach(item => {
-    console.log(item)
     var menu
     if (item.children) {
       menu = {

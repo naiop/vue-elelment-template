@@ -101,7 +101,7 @@ export default {
 
   },
   created() {
-    this.listQuery = storageget('ftp') || []
+    this.listQuery = storageget('ftp') || this.listQuery
   },
   methods: {
     handleFilter() {
