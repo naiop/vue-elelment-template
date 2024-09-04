@@ -77,8 +77,18 @@ export const constantRoutes = [
     hidden: true
   },
   {
-    path: '/three', //
-    component: () => import('@/views/whiteList/threejs/full_screen_threejs'),
+    path: '/threejscase1', //
+    component: () => import('@/views/whiteList/threejs/index1'),
+    hidden: true
+  },
+  {
+    path: '/threejscase2', //
+    component: () => import('@/views/whiteList/threejs/index2'),
+    hidden: true
+  },
+  {
+    path: '/flow', //
+    component: () => import('@/views/whiteList/eapFlow/index'),
     hidden: true
   },
   {
